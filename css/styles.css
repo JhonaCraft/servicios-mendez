@@ -1,0 +1,596 @@
+:root{
+  /* Nueva paleta integrada */
+  --bg: #EBF4F6;          /* fondo principal (muy claro) */
+  --primary-dark: #09637E;/* color principal oscuro */
+  --accent: #088395;      /* color de acción (botones) */
+  --primary-light: #7AB2B2;/* color secundario / acentos suaves */
+
+  /* superficies y componentes */
+  --card: #ffffff;               /* fondo de tarjetas */
+  --card-plate: rgba(8,131,149,0.06); /* brillo leve sobre cartas */
+  --surface: #f1f7f8;            /* superficies intermedias */
+
+  /* tipografía / contraste */
+  --text: #072b2b;   /* texto principal oscuro (antes --white) */
+  --muted: #375e62;  /* texto secundario más suave */
+  --soft-border: rgba(7,34,39,0.06);
+
+  --gap:1rem;
+  --max-width:1100px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: var(--bg) !important;
+  background-image: none !important;
+}
+
+/* Aplicar colores nuevos */
+body{
+  background: var(--bg) !important;
+  color: var(--text);
+}
+.site-header,
+.container{ background: transparent; }
+
+/* Tarjetas y paneles */
+.card,
+.item-card,
+.service-item{
+  background-color: var(--card);
+  border: 1px solid var(--soft-border);
+  color: var(--text);
+  box-shadow: 0 8px 20px rgba(5,20,20,0.04);
+}
+
+/* Texto secundario */
+.lead,
+.item-desc,
+.item-meta,
+.service-text p{ color: var(--muted); }
+
+/* Botones de acción */
+.btn-cta{
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(8,131,149,0.10);
+}
+
+/* Bordes y detalles */
+.hero-visual,
+.decor-img{ border:1px solid var(--soft-border); }
+
+/* Lightbox: ajustar fondo para paleta clara */
+.lightbox-overlay{ background: rgba(7,34,39,0.65); }
+
+main{
+  background: none !important;
+}
+
+/* Contenedor principal: margen lateral y ancho máximo */
+.container{
+  width: calc(100% - 2rem);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem 1rem; /* evita que el contenido quede pegado al borde */
+}
+
+/* header */
+.site-header{
+  padding: 0.6rem 0;
+  min-height: 64px;
+  display: block;
+  background: transparent;
+  z-index: 30;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding: 0 0.5rem;
+}
+.brand{ font-size:1.25rem; font-weight:700; color:var(--white); }
+.nav a{ color:var(--muted); text-decoration:none; margin-left:1rem; font-weight:600; }
+.nav a:hover{ color:var(--white); }
+
+/* logo header */
+.logo-img{
+  height:36px;
+  display:inline-block;
+  filter:brightness(1.03) saturate(.95);
+}
+
+/* hero */
+.hero{
+  /* aumentar espacio vertical y altura mínima */
+  padding:5rem 0;
+  min-height:480px;
+  display:flex;
+  align-items:center; /* centra .container verticalmente */
+  position:relative;
+  overflow:hidden;
+}
+
+/* ajustes para pantallas grandes */
+@media (min-width:1100px){
+  .hero{ padding:6rem 0; min-height:560px; }
+}
+
+/* Texto del hero: más llamativo */
+.hero .hero-text{
+  max-width:760px;
+  padding:1rem;
+  color: var(--white);
+}
+
+/* Titular grande y con detalle visual */
+.hero .hero-text h2{
+  margin:0 0 .45rem;
+  font-size: clamp(1.8rem, 4.8vw, 3.4rem); /* responsivo */
+  line-height:1.02;
+  font-weight:800;
+  color: #ffffff;
+  text-shadow: 0 10px 30px rgba(2,8,23,0.45);
+  letter-spacing: -0.01em;
+  position:relative;
+}
+
+/* barra de acento debajo del título */
+.hero .hero-text h2::after{
+  content: "";
+  display:block;
+  width:64px;
+  height:6px;
+  background: var(--accent);
+  border-radius:6px;
+  margin-top:12px;
+  box-shadow: 0 8px 20px rgba(8,131,149,0.12);
+}
+
+/* Subtítulo más visible */
+.hero .lead{
+  margin:0 0 1.1rem;
+  font-size: clamp(1rem, 2.4vw, 1.125rem);
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 6px 18px rgba(2,8,23,0.28);
+}
+
+/* Mantener CTA visible y con buen contraste */
+.btn-cta{
+  padding:.68rem 1rem;
+  font-size:1rem;
+  border-radius:10px;
+  box-shadow: 0 12px 28px rgba(8,131,149,0.12);
+}
+
+/* Ajustes móviles: reducir alturas y tamaños */
+@media (max-width:640px){
+  .hero{ padding:2.2rem 0; min-height:260px; }
+  .hero .hero-text h2{ font-size:1.4rem; line-height:1.08; }
+  .hero .hero-text h2::after{ width:48px; height:5px; margin-top:10px; }
+  .hero .lead{ font-size:0.98rem; }
+  .btn-cta{ padding:.5rem .75rem; font-size:.95rem; }
+}
+
+/* slideshow wrapper sits behind the content */
+.hero-banner{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* slides: cover, centered, crossfade via keyframes */
+.hero-slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:0;
+  transform: scale(1.02);
+  transition: opacity .6s ease;
+  animation: slideFade 16s linear infinite;
+}
+
+/* stagger start times for 4 slides (16s total -> 4s each visible) */
+.hero-banner .hero-slide:nth-child(1){ animation-delay: 0s; }
+.hero-banner .hero-slide:nth-child(2){ animation-delay: 4s; }
+.hero-banner .hero-slide:nth-child(3){ animation-delay: 8s; }
+.hero-banner .hero-slide:nth-child(4){ animation-delay: 12s; }
+
+/* ensure content sits above slides */
+.hero .container{ position:relative; z-index:2; }
+
+/* optional semi-opaque overlay for legibility */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  border-radius:inherit;
+  background: rgba(7,34,39,0.18); /* ajustar opacidad si hace falta */
+  pointer-events:none;
+}
+
+/* keyframes: each slide fades in, stays, then fades out */
+@keyframes slideFade{
+  0%   { opacity:0; transform: scale(1.02); }
+  6%   { opacity:1; transform: scale(1); }
+  24%  { opacity:1; transform: scale(1); }
+  30%  { opacity:0; transform: scale(1.02); }
+  100% { opacity:0; transform: scale(1.02); }
+}
+
+/* pequeño ajuste responsive */
+@media (max-width:540px){
+  .hero{ border-radius:10px; }
+  .hero::before{ background: rgba(7,34,39,0.22); }
+}
+
+/* Visual secundario: placa suave sobre el fondo para contraste */
+.hero-visual{
+  
+  border:1px solid var(--soft-white);
+  min-height:140px;
+  padding:0.75rem;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  background-color: rgba(255,255,255,0.02) !important;
+  background-image: none !important;
+}
+
+/* estilos para el SVG hero */
+.hero-svg{
+  width:180px;
+  height:120px;
+  color:var(--muted); /* usa color gris */
+  display:block;
+}
+
+/* servicios */
+.seccion-servicios h2,.seccion-bazar h2{margin-top:0}
+.servicios-grid{
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+  margin-top:1rem;
+}
+
+/* Separación entre hero y la sección de servicios */
+.seccion-servicios{
+  margin-top: 2.5rem;    /* espacio desde el hero */
+  padding-top: 0.75rem;  /* espacio interno extra para que el h2 respire */
+}
+
+/* Asegurar que el h2 no quede pegado al borde */
+.seccion-servicios h2{
+  margin-top: 0.5rem;    /* empuja el título hacia abajo respecto al inicio de la sección */
+}
+
+/* opcional: más separación en pantallas grandes */
+@media (min-width:1100px){
+  .seccion-servicios{ margin-top:3.5rem; padding-top:1rem; }
+}
+
+/* Cada item es un grid de dos columnas (texto + imagen) */
+.service-item{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:1rem;
+  align-items:center;
+  
+  border-radius:10px;
+  padding:1rem;
+  border:1px solid var(--soft-white);
+  background-color: var(--card) !important;
+  background-image: none !important;
+}
+
+/* Alternar: para pares invertir columnas (imagen a la izquierda) */
+.service-item:nth-child(even){
+  grid-template-columns: 360px 1fr;
+}
+
+/* Texto e imagen: estilos */
+.service-text h3{margin:0 0 .5rem;color:var(--white)}
+.service-text p{margin:0;color:var(--muted)}
+.service-media img{
+  width:100%;
+  height:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 8px 24px rgba(2,8,23,0.12);
+}
+
+/* Mobile: apilar texto encima de imagen y ajustar paddings */
+@media (max-width:900px){
+  .service-item{
+    grid-template-columns:1fr;
+    gap:.75rem;
+    padding:.85rem;
+  }
+  .service-item:nth-child(even){
+    grid-template-columns:1fr;
+  }
+  .service-media img{ max-height:180px }
+}
+  
+/* bazar */
+.bazar-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+.item-title{margin:0 0 .4rem}
+.item-desc{color:var(--muted);margin:0 0 .6rem}
+.item-meta{color:var(--muted);font-size:.9rem;margin-bottom:.6rem}
+.card-actions{display:flex;gap:.5rem}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white);padding:.5rem .75rem;border-radius:8px;text-decoration:none}
+.item-images{
+  display:flex;
+  gap:0.5rem;
+  margin:0.6rem 0;
+  flex-wrap:wrap;
+}
+.item-img{
+  width:96px;
+  height:64px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.04);
+  cursor:pointer;
+}
+@media (max-width:540px){
+  .item-img{width:72px;height:48px}
+}
+
+/* Restaurar contorno y elevación para tarjetas del bazar (item-card) */
+.item-card{
+  border: 1px solid rgba(255,255,255,0.06);
+  
+  box-shadow: 0 8px 20px rgba(2,8,23,0.08);
+  border-radius:10px;
+  padding:1rem;
+}
+
+/* Espaciado y acciones dentro de la card */
+.item-card .card-actions{
+  margin-top:0.6rem;
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+
+/* Miniaturas dentro de la card: visual consistente */
+.item-card .item-images{ margin-bottom:0.6rem; }
+.item-card .item-img{
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 6px 14px rgba(2,8,23,0.06);
+  cursor:pointer;
+}
+
+/* franja decorativa */
+.decor-strip{padding:0;margin-top:1rem;margin-bottom:1rem}
+.decor-grid{
+  display:flex;
+  gap:.75rem;
+  align-items:center;
+  justify-content:center;
+}
+.decor-img{
+  width:100%;
+  max-width:300px;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid var(--soft-white);
+  box-shadow:0 8px 18px rgba(2,8,23,0.08);
+  opacity:0.98;
+}
+
+/* footer */
+.site-footer{padding:1.25rem 0;border-top:1px solid rgba(255,255,255,0.03);padding-bottom: 0rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* Lightbox */
+.lightbox-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(2,6,12,0.75);
+  z-index:9999;
+  padding:1.5rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+}
+.lightbox-overlay.open{pointer-events:auto; opacity:1;}
+.lightbox-inner{
+  max-width:1100px;
+  width:100%;
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.lightbox-img{
+  max-width:100%;
+  max-height:90vh;
+  border-radius:8px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.6);
+  object-fit:contain;
+  background:#111;
+}
+.lightbox-close, .lightbox-nav{
+  position:absolute;
+  border:0;
+  color:var(--white);
+  padding:.5rem;
+  border-radius:6px;
+  cursor:pointer;
+  backdrop-filter:blur(4px);
+}
+.lightbox-close{top:8px;right:8px}
+.lightbox-nav{top:50%;transform:translateY(-50%);width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.lightbox-prev{left:8px}
+.lightbox-next{right:8px}
+
+/* pequeño ajuste para mobile */
+@media (max-width:540px){
+  .lightbox-nav{width:40px;height:40px}
+}
+
+/* responsive */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .servicios-grid{grid-template-columns:repeat(2,1fr)}
+  .bazar-grid{grid-template-columns:repeat(2,1fr)}
+  .container{ padding-left:0.75rem; padding-right:0.75rem; }
+  .header-inner{ padding-left:0.5rem; padding-right:0.5rem; }
+}
+@media (max-width:540px){
+  .servicios-grid{grid-template-columns:1fr}
+  .bazar-grid{grid-template-columns:1fr}
+  .device-illustration{width:140px;height:100px;font-size:2rem}
+  .hero-text h2{font-size:1.4rem}
+  .item-img{width:72px;height:48px}
+  .hero-visual{ min-height:140px; padding:.6rem; }
+  .hero{ padding:2rem 0; border-radius:8px; }
+  .hero-visual{ min-height:120px; padding:0.6rem; }
+}
+
+/* Asegurar color de texto por defecto (evita que aparezcan textos en negro) */
+html, body { color: var(--white); }
+
+/* Forzar colores dentro de tarjetas y secciones para consistencia */
+.card,
+.item-card,
+.service-item,
+.service-text,
+.service-text h3,
+.service-text p,
+.item-title,
+.item-desc,
+.item-meta,
+.lead {
+  color: inherit; /* hereda var(--white) o var(--muted) donde corresponda */
+}
+.service-text p, .item-desc, .item-meta, .lead { color: var(--muted); }
+
+/* Imágenes responsivas y evitar overflow */
+img { max-width:100%; height:auto; display:block; }
+
+/* Reforzar espacio interno en sections para que no queden pegadas */
+.seccion-servicios, .seccion-bazar, .hero {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Restaurar estilos del hero: texto y CTA */
+.hero{ position:relative; overflow:hidden; }
+
+/* Contenido encima del banner */
+.hero .container{ position:relative; z-index:2; }
+
+/* Texto del hero */
+.hero .hero-text{
+  max-width:680px;
+  padding:1rem;
+  color: var(--text);
+}
+.hero .hero-text h2{
+  margin:0 0 .6rem;
+  font-size:2rem;
+  line-height:1.08;
+  color: #ffffff;
+  text-shadow: 1px 1px black;
+  
+}
+.hero .lead{
+  margin:0 0 1rem;
+  font-size:1.05rem;
+  color: #ffffff;
+  text-shadow: 1px 1px black;
+}
+
+/* Botones */
+.btn{
+  display:inline-block;
+  font-weight:600;
+  text-decoration:none;
+  padding:.56rem .9rem;
+  border-radius:8px;
+  line-height:1;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.btn-cta{
+  background: var(--accent);
+  color:#fff;
+  border:1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 8px 20px rgba(8,131,149,0.12);
+}
+.btn-cta:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px rgba(8,131,149,0.16); }
+.btn-cta:active, .btn-cta:focus{ transform:none; outline:3px solid rgba(8,131,149,0.12); outline-offset:2px; }
+
+/* Asegura hero-visual/banners detrás del texto */
+.hero-banner, .hero-slideshow, .hero-slide{ z-index:0; pointer-events:none; }
+.hero-visual{ z-index:1; }
+
+/* Ajustes móviles */
+@media (max-width:640px){
+  .hero .hero-text h2{ font-size:1.4rem; }
+  .btn-cta{ padding:.5rem .75rem; border-radius:7px; }
+}
+
+/* Titulares más llamativos para Servicios y Bazar */
+.seccion-servicios h2,
+.seccion-bazar h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px rgb(255, 255, 255);
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: 0.6rem;
+  text-transform: none;
+}
+
+/* barra de acento bajo el título (decorativa) */
+.seccion-servicios h2::after,
+.seccion-bazar h2::after{
+  content: "";
+  display: block;
+  width: 72px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 6px;
+  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(8,131,149,0.08);
+}
+
+/* variante compacta en pantallas pequeñas */
+@media (max-width:540px){
+  .seccion-servicios h2,
+  .seccion-bazar h2{
+    font-size: 1.25rem;
+    padding-bottom: .45rem;
+  }
+  .seccion-servicios h2::after,
+  .seccion-bazar h2::after{
+    width: 56px;
+    height: 5px;
+    margin-top:8px;
+  }
+}

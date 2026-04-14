@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reparaciones — Electro y Hogar</title>
+  <meta name="description" content="Reparación de electrodomésticos y electrónica — servicio profesional, técnico en ingeniería." />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Servicios y Reparaciones Méndez</h1>
+      <nav class="nav">
+        <a href="#hero">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#bazar">Bazar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <!-- Banner slideshow: usa solo CSS para la animación -->
+      <div class="hero-banner" aria-hidden="true">
+        <div class="hero-slide" style="background-image: url('images/hero-bg.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('images/decor-1.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('images/decor-2.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('images/decor-3.jpg')"></div>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h2>Reparaciones confiables para tus electrodomésticos y dispositivos</h2>
+          <p class="lead">Ingeniero con experiencia en electrónica y mantenimiento de electrodomésticos. Diagnóstico preciso y reparación garantizada.</p>
+          <a id="btn-whatsapp-hero" class="btn btn-cta" href="#" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+        </div>
+
+    </section>
+
+
+    <section id="servicios" class="seccion-servicios container">
+      <h2>Servicios destacados</h2>
+
+      <div class="servicios-grid">
+        <article class="service-item">
+          <div class="service-text">
+            <h3>Electronicos</h3>
+            <p>Diagnóstico, cambio de piezas y mantenimiento preventivo.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/service-calc.jpg" alt="Calculadora - reparación">
+          </div>
+        </article>
+
+        <article class="service-item">
+          <div class="service-text">
+            <h3>Electrodomésticos</h3>
+            <p>Diagnóstico, reparación y mantenimiento de electrodomésticos.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/licuadora.jpg" alt="Licuadora - reparación">
+          </div>
+        </article>
+
+        <article class="service-item">
+          <div class="service-text">
+            <h3>Arreglos de electricidad</h3>
+            <p>Reparación de instalaciones eléctricas y mantenimiento de sistemas eléctricos.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/electricidad.jpg" alt="Electricidad - reparación">
+          </div>
+        </article>
+
+        <article class="service-item">
+          <div class="service-text">
+            <h3>Laptops y Computadoras</h3>
+            <p>Diagnóstico de hardware, mantenimiento correctivo y limpieza de software.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/service-laptop.jpg" alt="Laptop - reparación">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="bazar" class="seccion-bazar container">
+      <h2>Bazar — Segunda mano</h2>
+      <p class="muted">Artículos revisados y funcionales. Consulta por WhatsApp para más detalles.</p>
+      <div id="bazar-list" class="grid bazar-grid" aria-live="polite">
+        <!-- tarjetas generadas dinámicamente -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Ing. Jhonatan Méndez</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
