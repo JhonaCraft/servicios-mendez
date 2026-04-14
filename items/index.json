@@ -1,5 +1,7 @@
 [
-  "items/lavadora/item.json",
-  "items/televisor/item.json",
-  "items/laptop/item.json"
+  "items/bujias/item.json",
+  "items/cornetas/item.json",
+  "items/equipo_sonido/item.json",
+  "items/inversor/item.json",
+  "items/plancha/item.json"
 ]
