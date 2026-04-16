@@ -3,5 +3,8 @@
   "items/cornetas/item.json",
   "items/equipo_sonido/item.json",
   "items/inversor/item.json",
-  "items/plancha/item.json"
+  "items/plancha/item.json",
+  "items/exprimidor/item.json",
+  "items/turbina/item.json",
+  "items/juego/item.json"
 ]
